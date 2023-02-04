@@ -10,9 +10,12 @@ MARKDOWN_TEMPLATE = """
 
 {{#folders}}
   - {{name}}
-  {{#files}}
-    - [{{name}}]({{path}})
-  {{/files}}
+    {{#folders}}
+    - {{name}}
+    {{#files}}
+        - [{{name}}]({{path}})
+    {{/files}}
+    {{/folders}}
 {{/folders}}
 """
 
@@ -47,8 +50,8 @@ def update_readme(files_with_title):
             raise RuntimeError("Can't nest files more than 2 folders")
 
         num_parts = len(parts)
+        local = mustache_json["folders"]
         for idx, p in enumerate(parts[:-1]):
-            local = mustache_json["folders"]
             if idx == num_parts - 2:
                 if p not in local:
                     local[p] = []
@@ -64,9 +67,17 @@ def update_readme(files_with_title):
 
     folders = []
     for k,v in mustache_json["folders"].items():
+        ffolders = []
+        for kk, vv in v.items():
+            ffolders.append({
+                "name": kk,
+                "files": sorted(vv, key=lambda x: x["name"])
+            }) 
+        v = ffolders
+
         folders.append({
             "name": k,
-            "files": v
+            "folders": v
         })
     mustache_json["folders"] = folders
 
