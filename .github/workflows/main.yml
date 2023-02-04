@@ -29,3 +29,6 @@ jobs:
         
       - name: Run update script
         run: ./update_index.py
+
+      - name: Update changed files
+        uses: stefanzweifel/git-auto-commit-action@v4
