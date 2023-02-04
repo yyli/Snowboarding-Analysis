@@ -27,14 +27,13 @@ def parse_html(file):
     with open(file, "r") as f:
         contents = f.read()
         title_var = re.findall('<meta name="__notebook_title_name__" content="(.*)">', contents)
-        contents = contents.replace("analyze", title_var)
-        contents = contents.replace("Make this Notebook Trusted to load map: File -> Trust Notebook", "")
-
         if len(title_var) != 1:
             raise RuntimeError(f"Couldn't extract title for {file}")
-        
         title_var = title_var[0]
 
+        contents = contents.replace("analyze", title_var)
+        contents = contents.replace("Make this Notebook Trusted to load map: File -> Trust Notebook", "")
+        
     with open(file, "w") as f:
         f.write(contents)
 
