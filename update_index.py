@@ -26,9 +26,9 @@ def get_all_files():
 def parse_html(file):
     with open(file, "r") as f:
         contents = f.read()
-        contents = contents.replace("analyze", "GPX Analysis")
-        contents = contents.replace("Make this Notebook Trusted to load map: File -> Trust Notebook", "")
         title_var = re.findall('<meta name="__notebook_title_name__" content="(.*)">', contents)
+        contents = contents.replace("analyze", title_var)
+        contents = contents.replace("Make this Notebook Trusted to load map: File -> Trust Notebook", "")
 
         if len(title_var) != 1:
             raise RuntimeError(f"Couldn't extract title for {file}")

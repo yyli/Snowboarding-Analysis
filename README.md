@@ -1,4 +1,3 @@
-
 # Snowboarding Analysis Files
 
   - 2023
