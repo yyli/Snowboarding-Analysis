@@ -12,3 +12,6 @@
         - [January 31, 2023 - Park City Mountain Resort](2023/park%20city/January%2031%2C%202023%20-%20Park%20City%20Mountain%20Resort.html)
     - okemo
         - [All Okemo 2023](2023/okemo/all_okemo.html)
+        - [March 3, 2023 - Okemo Mountain Resort](2023/okemo/March%203%2C%202023%20-%20Okemo%20Mountain%20Resort.html)
+        - [March 4, 2023 - Okemo Mountain Resort](2023/okemo/March%204%2C%202023%20-%20Okemo%20Mountain%20Resort.html)
+        - [March 5, 2023 - Okemo Mountain Resort](2023/okemo/March%205%2C%202023%20-%20Okemo%20Mountain%20Resort.html)
