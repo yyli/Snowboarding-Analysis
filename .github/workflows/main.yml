@@ -1,4 +1,4 @@
-name: 'Update list of analysis'
+name: 'Update list of analysis and deploy'
 
 on:
   push:
@@ -6,7 +6,9 @@ on:
     - main
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: writ
 
 # This allows a subsequently queued workflow run to interrupt previous runs
 concurrency:
@@ -35,3 +37,23 @@ jobs:
 
       - name: Update changed files
         uses: stefanzweifel/git-auto-commit-action@v4
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
